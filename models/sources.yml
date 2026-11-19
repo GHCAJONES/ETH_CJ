@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: eth                       #simply how dbt will reference the source data
+    database: eth                   #raw source database
+    schema: eth_schema              #raw database schema
+
+    tables:
+      - name: contracts                   #contracts table
+      - name: token_transfers       #token_transfers table
+      - name: transactions          #transactions table
+      - name: contracts_clone
