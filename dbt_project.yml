@@ -43,18 +43,33 @@ models:
     # example:
        +materialized: view
        +tags: ['eth', 'crypto']
+       +post-hook:
+        - GRANT USAGE ON DATABASE DBT TO ROLE TESTER;
+        - GRANT USAGE ON SCHEMA DBT.DBT_DEV TO ROLE TESTER; 
+       +grants: 
+        select: ['TESTER']
+
 
        source:
         +materialized: view   # defines at a global level all objects in the DB/Schema will be views
         +schema: source       # defines that a schema should be created in the DB if not already created
         +tags:
           - elt
+        +post-hook:
+         - GRANT USAGE ON SCHEMA DBT.DBT_DEV_SOURCE TO ROLE TESTER;         
+        +grants: 
+         select: ['TESTER']
+
 
        staging:
         +materialized: view   # defines at a global level all objects in the DB/Schema will be views
         +schema: staging      # defines that a schema should be created in the DB if not already created       
         +tags:
           - elt
+        +post-hook:
+         - GRANT USAGE ON SCHEMA DBT.DBT_DEV_STAGING TO ROLE TESTER;   
+        +grants: 
+         select: ['TESTER']         
 
        marts:
         +materialized: table  # defines at a global level all objects in the DB/Schema will be tables
@@ -62,8 +77,10 @@ models:
         +tags:
           - powerbi
           - report
-
-
+        +post-hook:
+         - GRANT USAGE ON SCHEMA DBT.DBT_DEV_MARTS TO ROLE TESTER;  
+        +grants: 
+         select: ['TESTER']
 
 
 
