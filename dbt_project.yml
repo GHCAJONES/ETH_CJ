@@ -80,7 +80,7 @@ models:
         +post-hook:
          - GRANT USAGE ON SCHEMA DBT.DBT_DEV_MARTS TO ROLE TESTER;  
         +grants: 
-         select: ['TESTER', 'BA']
+         select: ['TESTER']
 
 
 
