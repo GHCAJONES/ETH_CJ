@@ -8,7 +8,6 @@ from snowflake.snowpark.types import (
     StructField,
 )
 
-
 def model(dbt, session):
     # NOTE: DataFrame.to_pandas() is not supported inside a Snowflake UDF
     # (it raises "255002: Optional dependency: 'pandas' is not installed" even
