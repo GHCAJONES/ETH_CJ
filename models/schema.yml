@@ -11,3 +11,46 @@ models:
         data_tests:
           - unique
           - not_null
+
+  - name: stablecoin_activity_per_day
+    latest_version: 1
+    config:
+      contract:
+        enforced: true
+        alias_types: true
+        # need to list all the columns affected by the contract
+
+    columns:
+      - name: date
+        data_type: date
+        description: ""
+
+      - name: token_address
+        data_type: varchar
+        description: ""
+
+      - name: type
+        data_type: varchar
+        description: ""
+
+      - name: symbol
+        data_type: varchar
+        description: ""
+
+      - name: total_usd_value
+        data_type: float
+        description: "" 
+
+    versions:
+
+      - v: 1
+      # deprecation_date: 2030-01-01
+      # as per the contract layout
+
+      - v: 2
+      # removed the token_address and symbol columns
+        columns:
+        # use v1 columns but exclude those we want to drop as part of v2
+          - include: all
+            exclude: [token_address,symbol]
+
