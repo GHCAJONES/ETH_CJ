@@ -77,10 +77,12 @@ models:
         +tags:
           - powerbi
           - report
+        
         +post-hook:
-         - GRANT USAGE ON SCHEMA DBT.DBT_DEV_MARTS TO ROLE TESTER;  
+            - GRANT USAGE ON DATABASE DBT TO ROLE TESTER;
+            - "{{ create_latest_version_view() }}"
         +grants: 
-         select: ['TESTER']
+         select: []
 
 
 
